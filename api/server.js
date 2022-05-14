@@ -7,7 +7,7 @@ const server = express();
 server.use(express.json())
 
 // global middlewares and the user's router need to be connected here
-// middleWare are validators, blockers, and messengers
+// middleWare are gatekeepers(validators or blockers) and messengers
 
 
 server.get('/', middleware.logger, (req, res) => {
