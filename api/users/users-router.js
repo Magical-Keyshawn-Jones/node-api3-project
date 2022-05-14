@@ -88,6 +88,14 @@ router.post('/:id/posts', (req, res) => {
   // this needs a middleware to verify user id
   // and another middleware to check that the request body is valid
   post.insert()
+  .then(results => {
+    res.status(200).json(results)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({ message: 'could not create post' })
+  })
+  
 });
 
 // do not forget to export the router
