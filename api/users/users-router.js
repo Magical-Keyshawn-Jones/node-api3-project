@@ -45,7 +45,7 @@ router.put('/:id', (req, res) => {
   // RETURN THE FRESHLY UPDATED USER OBJECT
   // this needs a middleware to verify user id
   // and another middleware to check that the request body is valid
-  post.update()
+  user.update()
   .then(results => {
     res.status(200).json(results)
   })
@@ -53,12 +53,20 @@ router.put('/:id', (req, res) => {
     console.log(err)
     res.status(500).json({ message: 'could not complete changes' })
   })
-  
+
 });
 
 router.delete('/:id', (req, res) => {
   // RETURN THE FRESHLY DELETED USER OBJECT
   // this needs a middleware to verify user id
+  user.remove()
+  .then(results => {
+    res.status(200).json(results)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({ message: 'could not delete user'})
+  })
 });
 
 router.get('/:id/posts', (req, res) => {
