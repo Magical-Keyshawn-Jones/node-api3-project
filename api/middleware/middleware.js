@@ -12,13 +12,13 @@ function logger(req, res, next) {
   next()
 }
 
-async function validateUserId (req, res, next) {
+ async function validateUserId (req, res, next) {
   // DO YOUR MAGIC
   const { id } = req.params
   const userProfile = await user.getById(id)
 
   if (!userProfile) {
-    res.status(404).json({ message: 'user not found' })
+    return res.status(404).json({ message: 'user not found' })
   }
 
   req.user = userProfile
