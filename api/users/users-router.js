@@ -72,6 +72,15 @@ router.delete('/:id', (req, res) => {
 router.get('/:id/posts', (req, res) => {
   // RETURN THE ARRAY OF USER POSTS
   // this needs a middleware to verify user id
+  user.getUserPosts()
+  .then(results => {
+    res.status(200).json(results)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({ message: 'could not retrieve posts' })
+  })
+  
 });
 
 router.post('/:id/posts', (req, res) => {
