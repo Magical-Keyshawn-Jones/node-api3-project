@@ -24,18 +24,36 @@ router.get('/:id', (req, res) => {
   // RETURN THE USER OBJECT
   // this needs a middleware to verify user id
   res.status(200).json(req.user)
-  
+
 });
 
 router.post('/', (req, res) => {
   // RETURN THE NEWLY CREATED USER OBJECT
   // this needs a middleware to check that the request body is valid
+  post.insert()
+  .then(results => {
+    res.status(200).json(results)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({ message: 'could not create post'})
+  })
+
 });
 
 router.put('/:id', (req, res) => {
   // RETURN THE FRESHLY UPDATED USER OBJECT
   // this needs a middleware to verify user id
   // and another middleware to check that the request body is valid
+  post.update()
+  .then(results => {
+    res.status(200).json(results)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({ message: 'could not complete changes' })
+  })
+  
 });
 
 router.delete('/:id', (req, res) => {
