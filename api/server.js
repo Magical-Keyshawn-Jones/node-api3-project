@@ -1,12 +1,16 @@
 const express = require('express');
+const middleware = require('./middleware/middleware')
 
 const server = express();
 
 // remember express by default cannot parse JSON in request bodies
+server.use(express.json())
 
 // global middlewares and the user's router need to be connected here
+// middleWare are validators, blockers, and messengers
 
-server.get('/', (req, res) => {
+
+server.get('/', middleware.logger, (req, res) => {
   res.send(`<h2>Let's write some middleware!</h2>`);
 });
 
